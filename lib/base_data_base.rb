@@ -12,7 +12,7 @@ class BaseDataBase
   end
 
   def get(value)
-    @base[value] || 'NULL'
+    @base[value]
   end
 
   def delete(name)
