@@ -2,7 +2,6 @@
 
 require_relative 'base_data_base'
 
-# simple data base
 class DataBase < BaseDataBase
   def initialize
     @transactions = []
@@ -25,7 +24,6 @@ class DataBase < BaseDataBase
 
   def commit_transaction
     @transactions.each do |transaction|
-
       @base.merge!(transaction[:data_transactions].base)
       @transactions = []
     end

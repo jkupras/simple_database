@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# spec/base_data_base.rb
 require 'base_data_base'
 describe BaseDataBase do
   let(:base_data_base) { BaseDataBase.new }

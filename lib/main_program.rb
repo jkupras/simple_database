@@ -15,6 +15,7 @@ class MainProgram
   HELLO = ['Witaj w bazie danych wprowadź komende.',
            'Potrzebujesz pomocy wpisz komende pomoc.',
            'Chcesz zkończyć program wpisz komende koniec'].freeze
+
   PROMPT = '> '
 
   def creata_data_base

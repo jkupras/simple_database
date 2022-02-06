@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# base data base
 class BaseDataBase
   def initialize
     @base = {}

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
-require 'pry'
-# spec/main.rb
+
 require 'main_program'
+
 describe MainProgram do
   let(:main_program) { MainProgram.new }
   let(:sample_data_base) { DataBase.new }
@@ -25,7 +25,6 @@ describe MainProgram do
     base_before = sample_data_base.base.count
     main_program.send(:comand_set, sample_data_base, arg1, arg2)
     base_after = sample_data_base.base.count
-    # binding.pry
     expect(base_after - base_before).to eq(1)
   end
 
@@ -43,7 +42,6 @@ describe MainProgram do
     main_program.send(:comand_set, sample_data_base, arg1, arg2)
     main_program.send(:comand_set, sample_data_base, 'b', arg2)
     main_program.send(:comand_set, sample_data_base, 'c', arg2)
-    # binding.pry
     expect { main_program.send(:comand_count, sample_data_base, arg2) }.to output("3\n" + prompt).to_stdout
   end
 
@@ -51,7 +49,6 @@ describe MainProgram do
     main_program.send(:comand_set, sample_data_base, arg1, arg2)
     main_program.send(:comand_set, sample_data_base, 'b', arg2)
     main_program.send(:comand_set, sample_data_base, 'c', arg2)
-    # binding.pry
     expect { main_program.send(:comand_count, sample_data_base, 'notexistent') }.to output("0\n" + prompt).to_stdout
   end
 
