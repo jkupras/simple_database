@@ -71,19 +71,7 @@ class MainProgram
     print PROMPT
   end
 
-  def comand_delete(sample_data_base, arg1)
-    puts 'DELETE'
-    if sample_data_base.current_transaction
-      deleted_data = { arg1 => sample_data_base.current_transaction[:data_transactions].base[arg1] || sample_data_base.base[arg1] }
-      sample_data_base.current_transaction[:deletion].merge!(deleted_data)
-      sample_data_base.current_transaction[:data_transactions].delete(arg1) || sample_data_base.delete(arg1)
-    else
-      sample_data_base.delete(arg1)
-    end
-  end
-
   def comand_set(sample_data_base, arg1, arg2)
-    puts 'SET'
     if sample_data_base.current_transaction
       sample_data_base.current_transaction[:data_transactions].set(arg1, arg2)
     else
@@ -93,7 +81,6 @@ class MainProgram
   end
 
   def comand_get(sample_data_base, arg1)
-    puts 'GET'
     if sample_data_base.current_transaction
       puts sample_data_base.current_transaction[:data_transactions].get(arg1) || sample_data_base.get(arg1) || 'NULL'
     else
@@ -103,7 +90,6 @@ class MainProgram
   end
 
   def comand_count(sample_data_base, arg1)
-    puts 'COUNT'
     if sample_data_base.current_transaction
       puts sample_data_base.current_transaction[:data_transactions].count(arg1) + sample_data_base.count(arg1)
     else
@@ -112,14 +98,22 @@ class MainProgram
     print PROMPT
   end
 
+  def comand_delete(sample_data_base, arg1)
+    if sample_data_base.current_transaction
+      deleted_data = { arg1 => sample_data_base.current_transaction[:data_transactions].base[arg1] || sample_data_base.base[arg1] }
+      sample_data_base.current_transaction[:deletion].merge!(deleted_data)
+      sample_data_base.current_transaction[:data_transactions].delete(arg1) || sample_data_base.delete(arg1)
+    else
+      sample_data_base.delete(arg1)
+    end
+  end
+
   def comand_begin(sample_data_base)
-    puts 'BEGIN'
     sample_data_base.begin_transaction
     print PROMPT
   end
 
   def comand_rollback(sample_data_base)
-    puts 'ROLLBACK'
     if sample_data_base.current_transaction
       sample_data_base.base.merge!(sample_data_base.current_transaction[:deletion])
     end
@@ -128,7 +122,6 @@ class MainProgram
   end
 
   def comand_commit(sample_data_base)
-    puts 'COMMIT'
     sample_data_base.commit_transaction
     print PROMPT
   end
