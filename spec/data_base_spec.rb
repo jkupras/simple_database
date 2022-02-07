@@ -24,7 +24,7 @@ describe DataBase do
     expect(data_base.current_transaction).to eq(nil)
   end
 
-  it '#commit_transaction mergr @transactions with @base' do
+  it '#commit_transaction merge @transactions with @base' do
     data_base.set('a', '50')
     data_base.begin_transaction
     data_base.current_transaction[:data_transactions].set('b', '30')
@@ -32,6 +32,7 @@ describe DataBase do
     data_base.current_transaction[:data_transactions].set('c', '50')
     data_base.commit_transaction
     expect(data_base.base).to eq({ 'a' => '50', 'b' => '30', 'c' => '50' })
+    expect(data_base.transactions_empty?).to eq(true)
   end
 
   it '#current_transaction return last transaction from @transactions' do

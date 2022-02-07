@@ -25,11 +25,15 @@ class DataBase < BaseDataBase
   def commit_transaction
     @transactions.each do |transaction|
       @base.merge!(transaction[:data_transactions].base)
-      @transactions = []
     end
+    @transactions = []
   end
 
   def current_transaction
     @transactions.last
+  end
+
+  def transactions_empty?
+    @transactions.empty?
   end
 end

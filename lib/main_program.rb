@@ -42,7 +42,6 @@ class MainProgram
         comand_count(sample_data_base, arg1)
       when 'DELETE'
         comand_delete(sample_data_base, arg1)
-        print PROMPT
       when 'BEGIN'
         comand_begin(sample_data_base)
       when 'ROLLBACK'
@@ -107,6 +106,7 @@ class MainProgram
     else
       sample_data_base.delete(arg1)
     end
+    print PROMPT
   end
 
   def comand_begin(sample_data_base)
@@ -123,7 +123,11 @@ class MainProgram
   end
 
   def comand_commit(sample_data_base)
-    sample_data_base.commit_transaction
+    if sample_data_base.transactions_empty?
+      puts 'NO TRANSACTION'
+    else
+      sample_data_base.commit_transaction
+    end
     print PROMPT
   end
 end
