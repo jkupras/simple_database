@@ -24,7 +24,7 @@ describe DataBase do
     expect(data_base.current_transaction).to eq(nil)
   end
 
-  it '#commit_transaction merge @transactions with @base' do
+  it '#commit_transaction merge transactions with @base' do
     data_base.set('a', '50')
     data_base.begin_transaction
     data_base.current_transaction[:data_transactions].set('b', '30')
